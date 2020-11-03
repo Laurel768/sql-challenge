@@ -1,3 +1,8 @@
+﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Link to schema: https://app.quickdatabasediagrams.com/#/d/MxGTN6
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
+
+
 CREATE TABLE "departments" (
     "dept_no" VARCHAR(4)   NOT NULL,
     "dept_name" VARCHAR(255)   NOT NULL,
@@ -32,13 +37,18 @@ CREATE TABLE "salaries" (
     "salary" INT   NOT NULL
 );
 
-ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
-REFERENCES "employees" ("emp_no");
-
 CREATE TABLE "dept_manager" (
     "dept_no" VARCHAR(4)   NOT NULL,
     "emp_no" INT   NOT NULL
 );
+
+CREATE TABLE "dept_emp" (
+    "emp_no" INT   NOT NULL,
+    "dept_no" VARCHAR(4)   NOT NULL
+);
+
+ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
+REFERENCES "employees" ("emp_no");
 
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "departments" ("dept_no");
@@ -46,39 +56,9 @@ REFERENCES "departments" ("dept_no");
 ALTER TABLE "dept_manager" ADD CONSTRAINT "fk_dept_manager_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
-CREATE TABLE "dept_emp" (
-    "emp_no" INT   NOT NULL,
-    "dept_no" VARCHAR(4)   NOT NULL
-);
-
-ALTER TABLE "employees" ADD CONSTRAINT "fk_employees_emp_title_id" FOREIGN KEY("emp_title_id")
-REFERENCES "titles" ("title_id");
-
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
 ALTER TABLE "dept_emp" ADD CONSTRAINT "fk_dept_emp_dept_no" FOREIGN KEY("dept_no")
 REFERENCES "departments" ("dept_no");
-
---List the following details of each employee: employee number, last name, first name, sex, and salary.
-SELECT employees.emp_no,
-employees.last_name,
-employees.first_name,
-employees.sex,
-salaries.salary
-FROM employees
-LEFT JOIN salaries
-ON employees.emp_no = salaries.emp_no
-LIMIT 10
-
---List first name, last name, and hire date for employees who were hired in 1986.
-SELECT employees.first_name,
-employees.last_name,
-employees.hire_date
-FROM employees
-WHERE DATE_PART('year',hire_date) = 1986;
-
---List the manager of each dept with the following info: 
---dept number, dept name, mgr employee number, last name, first name.
-
 
