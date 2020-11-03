@@ -1,3 +1,8 @@
+﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Link to schema: https://app.quickdatabasediagrams.com/#/d/MxGTN6
+-- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
+
+
 CREATE TABLE "departments" (
     "dept_no" VARCHAR(4)   NOT NULL,
     "dept_name" VARCHAR(255)   NOT NULL,
@@ -35,12 +40,3 @@ CREATE TABLE "salaries" (
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
-SELECT employees.emp_no,
-employees.last_name,
-employees.first_name,
-employees.sex,
-salaries.salary
-FROM employees
-LEFT JOIN salaries
-ON employees.emp_no = salaries.emp_no
-ORDER BY emp_no LIMIT 10
