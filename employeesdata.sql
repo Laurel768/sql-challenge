@@ -69,7 +69,6 @@ salaries.salary
 FROM employees
 LEFT JOIN salaries
 ON employees.emp_no = salaries.emp_no
-LIMIT 10
 
 --List first name, last name, and hire date for employees who were hired in 1986.
 SELECT employees.first_name,
@@ -80,5 +79,20 @@ WHERE DATE_PART('year',hire_date) = 1986;
 
 --List the manager of each dept with the following info: 
 --dept number, dept name, mgr employee number, last name, first name.
+
+
+
+--List employee number, last name, first name, and department name
+SELECT employees.emp_no,
+employees.last_name,
+employees.first_name,
+departments.dept_name
+FROM employees
+LEFT JOIN dept_emp
+ON employees.emp_no = dept_emp.emp_no
+INNER JOIN departments
+ON dept_emp.dept_no = departments.dept_no
+LIMIT 10
+
 
 
