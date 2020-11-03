@@ -35,6 +35,7 @@ CREATE TABLE "salaries" (
 ALTER TABLE "salaries" ADD CONSTRAINT "fk_salaries_emp_no" FOREIGN KEY("emp_no")
 REFERENCES "employees" ("emp_no");
 
+--List the following details of each employee: employee number, last name, first name, sex, and salary.
 SELECT employees.emp_no,
 employees.last_name,
 employees.first_name,
@@ -43,4 +44,14 @@ salaries.salary
 FROM employees
 LEFT JOIN salaries
 ON employees.emp_no = salaries.emp_no
-ORDER BY emp_no LIMIT 10
+LIMIT 10
+
+--List first name, last name, and hire date for employees who were hired in 1986.
+SELECT employees.first_name,
+employees.last_name,
+employees.hire_date
+FROM employees
+WHERE DATE_PART('year',hire_date) = 1986;
+
+--List the manager of each dept with the following info: 
+--dept number, dept name, mgr employee number, last name, first name.
