@@ -69,7 +69,7 @@ salaries.salary
 FROM employees
 LEFT JOIN salaries
 ON employees.emp_no = salaries.emp_no
-LIMIT 10
+;
 
 --List first name, last name, and hire date for employees who were hired in 1986.
 SELECT employees.first_name,
@@ -77,6 +77,7 @@ employees.last_name,
 employees.hire_date
 FROM employees
 WHERE DATE_PART('year',hire_date) = 1986;
+;
 
 --# 3 List the manager of each dept with the following info: 
 --dept number, dept name, mgr employee number, last name, first name.
@@ -93,7 +94,7 @@ INNER JOIN dept_manager
 ON departments.dept_no = dept_manager.dept_no
 LEFT OUTER JOIN employees ON
 dept_manager.emp_no = employees.emp_no
-
+;
 --# 4 List employee number, last name, first name, and department name
 SELECT employees.emp_no,
 employees.last_name,
@@ -104,7 +105,7 @@ LEFT JOIN dept_emp
 ON employees.emp_no = dept_emp.emp_no
 INNER JOIN departments
 ON dept_emp.dept_no = departments.dept_no
-LIMIT 10
+;
 
 --# 5 List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 SELECT
@@ -113,7 +114,7 @@ employees.last_name,
 employees.sex
 FROM EMPLOYEES
 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
-
+;
 
 --# 6 List all employees in the Sales department, including their employee number, last name, first name, and department name.
 
@@ -127,7 +128,7 @@ ON employees.emp_no = dept_emp.emp_no
 INNER JOIN departments
 ON dept_emp.dept_no = departments.dept_no
 WHERE dept_name = 'Sales'
-
+;
 --# 7 List all employees in the Sales and Development departments, 
 --including their employee number, last name, first name, and department name.
 
@@ -143,7 +144,7 @@ ON dept_emp.dept_no = departments.dept_no
 WHERE dept_name = 'Sales'
 OR dept_name = 'Development'
 LIMIT 100
-
+;
 --# 8 In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
 
 SELECT
