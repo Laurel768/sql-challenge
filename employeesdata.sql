@@ -106,5 +106,44 @@ INNER JOIN departments
 ON dept_emp.dept_no = departments.dept_no
 LIMIT 10
 
+--# 5 List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+
+--# 6 List all employees in the Sales department, including their employee number, last name, first name, and department name.
+
+SELECT employees.emp_no,
+employees.last_name,
+employees.first_name,
+departments.dept_name
+FROM employees
+LEFT JOIN dept_emp
+ON employees.emp_no = dept_emp.emp_no
+INNER JOIN departments
+ON dept_emp.dept_no = departments.dept_no
+WHERE dept_name = 'Sales'
+
+--# 7 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
